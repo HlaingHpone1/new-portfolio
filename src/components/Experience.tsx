@@ -1,42 +1,11 @@
 "use client";
 
 import { motion } from "motion/react";
+import { EXPERIENCES } from "@/data/experiences";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const VP   = { once: false, margin: "-80px" } as const;
 
-const EXPERIENCES = [
-  {
-    role: "React Developer",
-    company: "Ace Plus Solutions",
-    period: "April 2024 — Present",
-    current: true,
-    highlights: [
-      {
-        title: "Scalable Architecture",
-        body: "Developed and maintained highly scalable frontend applications utilising Next.js and TypeScript.",
-      },
-      {
-        title: "Design Systems",
-        body: "Built reusable UI components and comprehensive design systems to guarantee UI/UX consistency across multiple platforms.",
-      },
-      {
-        title: "API & Security",
-        body: "Integrated complex REST APIs for dynamic data rendering and implemented secure role-based access control using JWT.",
-      },
-      {
-        title: "Performance Optimisation",
-        body: "Significantly improved application load times by executing memoization, code splitting, and debouncing techniques.",
-      },
-      {
-        title: "Agile Collaboration",
-        body: "Worked closely with backend teams in a fast-paced Agile environment to consistently deliver feature-rich application updates.",
-      },
-    ],
-  },
-] as const;
-
-/* ── List stagger ── */
 const listContainer = {
   hidden: {},
   show:   { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
@@ -55,7 +24,6 @@ export default function Experience() {
     >
       <div className="max-w-6xl mx-auto">
 
-        {/* ── Section header ── */}
         <div className="mb-10 md:mb-12 space-y-2">
           <motion.p
             initial={{ opacity: 0 }}
@@ -77,10 +45,7 @@ export default function Experience() {
           </motion.h2>
         </div>
 
-        {/* ── Timeline ── */}
         <div className="relative">
-
-          {/* Vertical rail — grows down on scroll */}
           <motion.div
             initial={{ scaleY: 0, originY: 0 }}
             whileInView={{ scaleY: 1 }}
@@ -99,8 +64,6 @@ export default function Experience() {
                 transition={{ duration: 0.7, ease: EASE, delay: expIdx * 0.1 }}
                 className="relative pl-10 md:pl-14"
               >
-
-                {/* Dot marker */}
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -109,7 +72,6 @@ export default function Experience() {
                   className="absolute left-0 top-1.5 -translate-x-1/2 w-3 h-3 rounded-full bg-black dark:bg-white border-2 border-white dark:border-neutral-950 ring-1 ring-black dark:ring-white"
                 />
 
-                {/* Entry header */}
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-4">
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold text-black dark:text-white tracking-tight">
@@ -138,7 +100,6 @@ export default function Experience() {
                   </motion.span>
                 </div>
 
-                {/* Highlight bullets */}
                 <motion.ul
                   initial="hidden"
                   whileInView="show"
@@ -152,22 +113,20 @@ export default function Experience() {
                       variants={listItem}
                       className="flex items-center gap-3 group"
                     >
-                      {/* Bullet dash */}
                       <span className="shrink-0 w-4 h-px bg-black/30 dark:bg-white/30 group-hover:bg-black dark:group-hover:bg-white transition-colors duration-500" />
-
                       <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                        <span className="font-semibold text-black dark:text-white">{item.title}:{" "}</span>
+                        <span className="font-semibold text-black dark:text-white">
+                          {item.title}:{" "}
+                        </span>
                         {item.body}
                       </p>
                     </motion.li>
                   ))}
                 </motion.ul>
-
               </motion.div>
             ))}
           </div>
 
-          {/* Timeline end cap */}
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}

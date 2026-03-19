@@ -1,57 +1,43 @@
 "use client";
 
 import { motion } from "motion/react";
+import { SKILLS } from "@/data/skills";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const VP   = { once: false, margin: "-80px" } as const;
 
-const SKILLS: { category: string; items: string[] }[] = [
-  { category: "Core", items: ["TypeScript", "Next.js", "React.js"] },
-  { category: "UI", items: ["Tailwind CSS", "Shadcn", "Radix UI", "MUI"] },
-  {
-    category: "Tools",
-    items: ["Docker", "GitHub Actions", "Vercel", "Ubuntu"],
-  },
-  { category: "State / Forms", items: ["Zustand", "React Hook Form", "Yup"] },
-];
-
-/* ── Shared viewport config ── */
-const VP = { once: false, margin: "-80px" } as const;
-
-/* ── Reusable animation props ── */
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
+  initial:     { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: VP,
-  transition: { duration: 0.65, ease: EASE, delay },
+  viewport:    VP,
+  transition:  { duration: 0.65, ease: EASE, delay },
 });
 
 const fadeIn = (delay = 0) => ({
-  initial: { opacity: 0 },
+  initial:     { opacity: 0 },
   whileInView: { opacity: 1 },
-  viewport: VP,
-  transition: { duration: 0.55, ease: EASE, delay },
+  viewport:    VP,
+  transition:  { duration: 0.55, ease: EASE, delay },
 });
 
-/* ── Container / stagger for skill categories ── */
 const categoryContainer = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
+  show:   { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
 };
 
 const categoryItem = {
   hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
 };
 
-/* ── Tag stagger ── */
 const tagContainer = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.045, delayChildren: 0 } },
+  show:   { transition: { staggerChildren: 0.045, delayChildren: 0 } },
 };
 
 const tagItem = {
   hidden: { opacity: 0, scale: 0.88 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: EASE } },
+  show:   { opacity: 1, scale: 1, transition: { duration: 0.4, ease: EASE } },
 };
 
 export default function About() {
@@ -61,11 +47,9 @@ export default function About() {
       className="font-sans px-6 md:px-10 py-16 md:py-20 border-t border-neutral-100 dark:border-neutral-800"
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-start">
-        {/* ════════════════════════════════
-            Left — Section label + Bio
-        ════════════════════════════════ */}
+
+        {/* ════ Left — Section label + Bio ════ */}
         <div className="space-y-5">
-          {/* Section label */}
           <motion.p
             {...fadeIn(0)}
             className="text-xs font-semibold tracking-widest uppercase text-neutral-400"
@@ -73,7 +57,6 @@ export default function About() {
             01 — About
           </motion.p>
 
-          {/* Heading */}
           <motion.h2
             {...fadeUp(0.08)}
             className="text-3xl md:text-4xl font-bold text-black dark:text-white tracking-tight leading-tight"
@@ -83,27 +66,20 @@ export default function About() {
             the details.
           </motion.h2>
 
-          {/* Bio paragraphs */}
           <motion.div
             initial="hidden"
             whileInView="show"
             viewport={VP}
             variants={{
               hidden: {},
-              show: {
-                transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-              },
+              show:   { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
             }}
             className="space-y-3 text-base md:text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-prose"
           >
             <motion.p
               variants={{
                 hidden: { opacity: 0, y: 18 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.65, ease: EASE },
-                },
+                show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
               }}
             >
               With{" "}
@@ -114,35 +90,27 @@ export default function About() {
               <span className="text-black dark:text-white font-semibold">
                 React.js and Next.js
               </span>
-              , I build performant, accessible interfaces that users actually
-              enjoy.
+              , I build performant, accessible interfaces that users actually enjoy.
             </motion.p>
             <motion.p
               variants={{
                 hidden: { opacity: 0, y: 18 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.65, ease: EASE },
-                },
+                show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
               }}
             >
               I thrive in{" "}
               <span className="text-black dark:text-white font-semibold">
                 agile environments
               </span>
-              , moving fast without cutting corners — focusing on clean
-              component architecture, type-safe codebases, and delivering
-              high-quality user experiences from first commit to production.
+              , moving fast without cutting corners — focusing on clean component
+              architecture, type-safe codebases, and delivering high-quality user
+              experiences from first commit to production.
             </motion.p>
           </motion.div>
         </div>
 
-        {/* ════════════════════════════════
-            Right — Skills Grid
-        ════════════════════════════════ */}
+        {/* ════ Right — Skills Grid ════ */}
         <div className="space-y-5">
-          {/* Spacer label (keeps columns aligned) */}
           <p className="hidden lg:block text-xs font-semibold tracking-widest uppercase text-transparent select-none">
             —
           </p>
@@ -162,17 +130,10 @@ export default function About() {
             className="space-y-4"
           >
             {SKILLS.map(({ category, items }) => (
-              <motion.div
-                key={category}
-                variants={categoryItem}
-                className="space-y-2"
-              >
-                {/* Category label */}
+              <motion.div key={category} variants={categoryItem} className="space-y-2">
                 <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400">
                   {category}
                 </p>
-
-                {/* Tags */}
                 <motion.div
                   initial="hidden"
                   whileInView="show"
@@ -194,6 +155,7 @@ export default function About() {
             ))}
           </motion.div>
         </div>
+
       </div>
     </section>
   );

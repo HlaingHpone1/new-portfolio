@@ -2,11 +2,11 @@
 
 import { Mail } from "lucide-react";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const VP   = { once: false, margin: "-60px" } as const;
 
-/* ── Inline SVG icons to avoid extra deps ── */
 function GitHubIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
@@ -24,6 +24,8 @@ function LinkedInIcon({ className }: { className?: string }) {
 }
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer
       id="contact"
@@ -31,7 +33,6 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto flex flex-col h-full">
 
-        {/* ── Section label ── */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -42,7 +43,6 @@ export default function Footer() {
           05 — Contact
         </motion.p>
 
-        {/* ── Large heading — each line staggers in ── */}
         <div className="mb-8 md:mb-10 overflow-hidden">
           <motion.h2
             initial={{ opacity: 0, y: 48 }}
@@ -57,7 +57,6 @@ export default function Footer() {
           </motion.h2>
         </div>
 
-        {/* ── Divider ── */}
         <motion.div
           initial={{ scaleX: 0, originX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -66,7 +65,6 @@ export default function Footer() {
           className="w-full h-px bg-white/10 mb-8"
         />
 
-        {/* ── Contact row ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,9 +72,7 @@ export default function Footer() {
           transition={{ duration: 0.65, ease: EASE, delay: 0.2 }}
           className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6"
         >
-
-          {/* Email */}
-          <a
+          <Link
             href="mailto:hlainghpone1@gmail.com"
             className="group inline-flex items-center gap-3 text-white"
           >
@@ -89,27 +85,21 @@ export default function Footer() {
             <span className="text-lg md:text-xl font-semibold tracking-tight underline underline-offset-4 decoration-white/20 hover:decoration-white transition-all duration-200">
               hlainghpone1@gmail.com
             </span>
-          </a>
+          </Link>
 
-          {/* Social links */}
           <motion.div
             initial="hidden"
             whileInView="show"
             viewport={VP}
-            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } } }}
+            variants={{
+              hidden: {},
+              show:   { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
+            }}
             className="flex items-center gap-3"
           >
             {[
-              {
-                href: "https://github.com/hlainghpone",
-                label: "GitHub",
-                Icon: GitHubIcon,
-              },
-              {
-                href: "https://linkedin.com/in/hlainghpone",
-                label: "LinkedIn",
-                Icon: LinkedInIcon,
-              },
+              { href: "https://github.com/hlainghpone",   label: "GitHub",   Icon: GitHubIcon },
+              { href: "https://linkedin.com/in/hlainghpone", label: "LinkedIn", Icon: LinkedInIcon },
             ].map(({ href, label, Icon }) => (
               <motion.a
                 key={label}
@@ -129,7 +119,6 @@ export default function Footer() {
           </motion.div>
         </motion.div>
 
-        {/* ── Bottom bar ── */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -137,7 +126,7 @@ export default function Footer() {
           transition={{ duration: 0.6, ease: EASE, delay: 0.35 }}
           className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-neutral-600 font-mono"
         >
-          <span>© {new Date().getFullYear()} Hlaing Hpone. All rights reserved.</span>
+          <span>© {year} Hlaing Hpone. All rights reserved.</span>
           <span>Built with Next.js &amp; TypeScript.</span>
         </motion.div>
 

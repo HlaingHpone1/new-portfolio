@@ -4,19 +4,17 @@ import Image from "next/image";
 import { MapPin, ArrowDownRight } from "lucide-react";
 import { motion } from "motion/react";
 
-/* ─── Shared easing ─────────────────────────────────── */
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/* ─── Variants ──────────────────────────────────────── */
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
+  initial:    { opacity: 0, y: 28 },
+  animate:    { opacity: 1, y: 0 },
   transition: { duration: 0.7, ease: EASE, delay },
 });
 
 const fadeIn = (delay = 0) => ({
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
+  initial:    { opacity: 0 },
+  animate:    { opacity: 1 },
   transition: { duration: 0.7, ease: EASE, delay },
 });
 
@@ -28,12 +26,9 @@ export default function Hero() {
     >
       <div className="max-w-6xl mx-auto w-full py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-10 items-center">
 
-        {/* ════════════════════════════════
-            Left — Text Content
-        ════════════════════════════════ */}
+        {/* ════ Left — Text Content ════ */}
         <div className="space-y-5 order-2 lg:order-1 lg:col-span-2">
 
-          {/* Greeting */}
           <motion.p
             {...fadeUp(0.05)}
             className="text-sm md:text-base text-neutral-500 dark:text-neutral-400 font-medium tracking-widest uppercase"
@@ -41,7 +36,6 @@ export default function Hero() {
             Hi, I&apos;m Hlaing Hpone.
           </motion.p>
 
-          {/* Heading */}
           <motion.h1
             {...fadeUp(0.15)}
             className="text-[clamp(2rem,4.5vw,3.75rem)] font-bold text-black dark:text-white leading-tight tracking-tight"
@@ -54,7 +48,6 @@ export default function Hero() {
             Frontend Developer
           </motion.h1>
 
-          {/* Divider */}
           <motion.div
             initial={{ scaleX: 0, originX: 0 }}
             animate={{ scaleX: 1 }}
@@ -62,16 +55,13 @@ export default function Hero() {
             className="w-12 h-px bg-black dark:bg-white"
           />
 
-          {/* Sub-headline */}
           <motion.p
             {...fadeUp(0.36)}
             className="text-base md:text-lg text-neutral-500 dark:text-neutral-400 font-normal max-w-md leading-relaxed"
           >
-            Building scalable, responsive web applications with modern UI
-            frameworks.
+            Building scalable, responsive web applications with modern UI frameworks.
           </motion.p>
 
-          {/* Location Tag */}
           <motion.div
             {...fadeUp(0.44)}
             className="flex items-center gap-1.5 text-sm text-neutral-400 dark:text-neutral-500 font-medium tracking-wide"
@@ -80,7 +70,6 @@ export default function Hero() {
             <span>Yangon, Myanmar</span>
           </motion.div>
 
-          {/* Scroll nudge */}
           <motion.a
             {...fadeIn(0.62)}
             href="#about"
@@ -97,9 +86,7 @@ export default function Hero() {
           </motion.a>
         </div>
 
-        {/* ════════════════════════════════
-            Right — Photo
-        ════════════════════════════════ */}
+        {/* ════ Right — Photo ════ */}
         <div className="order-1 lg:order-2 lg:col-span-1 flex justify-center lg:justify-end">
           <motion.div
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
@@ -107,7 +94,6 @@ export default function Hero() {
             transition={{ duration: 0.85, ease: EASE, delay: 0.1 }}
             className="relative"
           >
-            {/* Shadow offset block */}
             <motion.div
               initial={{ opacity: 0, x: 0, y: 0 }}
               animate={{ opacity: 1, x: 12, y: 12 }}
@@ -115,7 +101,6 @@ export default function Hero() {
               className="absolute inset-0 bg-neutral-100 dark:bg-neutral-800 rounded-sm"
             />
 
-            {/* Photo frame */}
             <div className="relative w-56 h-64 md:w-72 md:h-88 lg:w-80 lg:h-[26rem] overflow-hidden rounded-sm border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900">
               <Image
                 src="/mine.jpg"
@@ -125,8 +110,6 @@ export default function Hero() {
                 className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
                 priority
               />
-
-              {/* Corner accents */}
               <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-black/20 dark:border-white/20 pointer-events-none" />
               <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-black/20 dark:border-white/20 pointer-events-none" />
             </div>
