@@ -3,20 +3,7 @@
 import Image from "next/image";
 import { MapPin, ArrowDownRight } from "lucide-react";
 import { motion } from "motion/react";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: EASE, delay },
-});
-
-const fadeIn = (delay = 0) => ({
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  transition: { duration: 0.7, ease: EASE, delay },
-});
+import { EASE, mountFadeUp as fadeUp, mountFadeIn as fadeIn } from "@/lib/motion";
 
 export default function Hero() {
   return (

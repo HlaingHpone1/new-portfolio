@@ -3,16 +3,7 @@
 import { motion } from "motion/react";
 import { SKILLS } from "@/data/skills";
 import { SectionLabel } from "@/components/SectionLabel";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-const VP = { once: false, margin: "-80px" } as const;
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: VP,
-  transition: { duration: 0.65, ease: EASE, delay },
-});
+import { EASE, VP, fadeUp } from "@/lib/motion";
 
 const categoryContainer = {
   hidden: {},

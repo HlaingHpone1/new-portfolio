@@ -2,22 +2,20 @@
 
 import { motion } from "motion/react";
 import { Education } from "@/data/education";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-const rowItem = {
-  hidden: { opacity: 0, y: 20 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
-};
+import { EASE, VP } from "@/lib/motion";
 
 type Props = {
-  education: Education[number];
+  education: Education;
+  index: number;
 };
 
-export function EducationCard({ education: { degree, institution, period } }: Props) {
+export function EducationCard({ education: { degree, institution, period }, index }: Props) {
   return (
     <motion.div
-      variants={rowItem}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={VP}
+      transition={{ duration: 0.6, ease: EASE, delay: index * 0.12 }}
       className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-4"
     >
       <div className="space-y-0.5">

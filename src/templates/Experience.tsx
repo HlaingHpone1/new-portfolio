@@ -4,9 +4,7 @@ import { motion } from "motion/react";
 import { EXPERIENCES } from "@/data/experiences";
 import { ExperienceCard } from "@/components/ExperienceCard";
 import { SectionLabel } from "@/components/SectionLabel";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-const VP   = { once: false, margin: "-80px" } as const;
+import { EASE, VP } from "@/lib/motion";
 
 export default function Experience() {
   return (

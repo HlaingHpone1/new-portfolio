@@ -53,6 +53,11 @@ body {
 }
 
 :root {
+  /* Project / Other card — active (inverted) state muted tones */
+  --card-index: oklch(0.64 0 0);         /* neutral-400  #a3a3a3  */
+  --card-active-muted: oklch(0.90 0 0);  /* light gray   #e5e5e5  */
+  --card-active-border: oklch(0.45 0 0); /* mid gray     #737373  */
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -88,6 +93,11 @@ body {
 }
 
 .dark {
+  /* Project / Other card — active (inverted) state muted tones */
+  --card-index: oklch(0.28 0 0);         /* neutral-600  #404040  */
+  --card-active-muted: oklch(0.35 0 0);  /* dark gray    #525252  */
+  --card-active-border: oklch(0.35 0 0); /* dark gray    #525252  */
+
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -131,6 +141,93 @@ body {
   html {
     @apply font-sans;
   }
+}
+
+/* ── Project / Other card: CSS-driven inversion ────────────────
+   Colors live here so they automatically follow --background /
+   --foreground when the theme is toggled — no JS needed.
+─────────────────────────────────────────────────────────────── */
+:root {
+  --card-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --card-duration: 0.45s;
+}
+
+.project-card,
+.other-card {
+  background-color: var(--background);
+  transition: background-color var(--card-duration) var(--card-ease);
+}
+.project-card.is-active,
+.other-card.is-active {
+  background-color: var(--foreground);
+}
+
+/* Primary text + arrow: foreground → background on invert */
+.project-card .card-title,
+.other-card .card-title,
+.project-card .card-arrow,
+.other-card .card-arrow {
+  color: var(--foreground);
+  transition: color var(--card-duration) var(--card-ease);
+}
+.project-card.is-active .card-title,
+.other-card.is-active .card-title,
+.project-card.is-active .card-arrow,
+.other-card.is-active .card-arrow {
+  color: var(--background);
+}
+
+/* Index number */
+.project-card .card-index {
+  color: var(--card-index);
+  transition: color var(--card-duration) var(--card-ease);
+}
+.project-card.is-active .card-index {
+  color: var(--card-active-muted);
+}
+
+/* Tech stack, description, bullets */
+.project-card .card-muted,
+.other-card .card-muted {
+  color: var(--muted-foreground);
+  transition: color var(--card-duration) var(--card-ease);
+}
+.project-card.is-active .card-muted,
+.other-card.is-active .card-muted {
+  color: var(--card-active-muted);
+}
+
+/* Label badge */
+.project-card .card-label,
+.other-card .card-label {
+  color: var(--muted-foreground);
+  border-color: var(--border);
+  transition:
+    color var(--card-duration) var(--card-ease),
+    border-color var(--card-duration) var(--card-ease);
+}
+.project-card.is-active .card-label,
+.other-card.is-active .card-label {
+  color: var(--card-active-muted);
+  border-color: var(--card-active-border);
+}
+
+/* "View Project" button in both card types — inverts when card is active */
+.project-card .card-btn,
+.other-card .card-btn {
+  background-color: var(--foreground);
+  color: var(--background);
+  border-color: var(--foreground);
+  transition:
+    background-color var(--card-duration) var(--card-ease),
+    color var(--card-duration) var(--card-ease),
+    border-color var(--card-duration) var(--card-ease);
+}
+.project-card.is-active .card-btn,
+.other-card.is-active .card-btn {
+  background-color: var(--background);
+  color: var(--foreground);
+  border-color: var(--background);
 }
 
 /* ── View Transition: circular theme reveal from toggle centre ── */

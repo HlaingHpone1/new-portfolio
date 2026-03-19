@@ -4,9 +4,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Experience } from "@/data/experiences";
 import { ProjectCard } from "@/components/ProjectCard";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-const VP   = { once: false, margin: "-80px" } as const;
+import { EASE, VP } from "@/lib/motion";
 
 const listContainer = {
   hidden: {},
@@ -120,7 +118,7 @@ export function ExperienceCard({ exp, index }: Props) {
                 key={project.id}
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-150px 0px -60px 0px" }}
+                viewport={{ once: true, margin: "-150px 0px -60px 0px" }}
                 transition={{ duration: 0.6, ease: EASE, delay: pIdx * 0.08 }}
               >
                 <ProjectCard

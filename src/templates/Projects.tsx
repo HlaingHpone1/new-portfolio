@@ -6,9 +6,7 @@ import { FEATURED_PROJECTS, OTHER_PROJECTS } from "@/data/projects";
 import { SectionLabel } from "@/components/SectionLabel";
 import { ProjectCard } from "@/components/ProjectCard";
 import { OtherCard } from "@/components/OtherCard";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-const VP   = { once: false, margin: "-80px" } as const;
+import { EASE, VP } from "@/lib/motion";
 
 /* ─────────────────────────────────────────
    Main Section
@@ -46,7 +44,7 @@ export default function Projects() {
               key={project.id}
               initial={{ opacity: 0, y: 48 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-150px 0px -60px 0px" }}
+              viewport={{ once: true, margin: "-150px 0px -60px 0px" }}
               transition={{ duration: 0.6, ease: EASE, delay: index * 0.1 }}
             >
               <ProjectCard
@@ -71,7 +69,7 @@ export default function Projects() {
                     key={project.id}
                     initial={{ opacity: 0, x: isRight ? 48 : -48 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, margin: "-150px 0px -60px 0px" }}
+                    viewport={{ once: true, margin: "-150px 0px -60px 0px" }}
                     transition={{
                       duration: 0.6,
                       ease: EASE,

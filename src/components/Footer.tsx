@@ -4,9 +4,7 @@ import { Mail } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { SectionLabel } from "@/components/SectionLabel";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-const VP   = { once: false, margin: "-60px" } as const;
+import { EASE, VP } from "@/lib/motion";
 
 function GitHubIcon({ className }: { className?: string }) {
   return (
