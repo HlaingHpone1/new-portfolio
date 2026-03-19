@@ -3,6 +3,7 @@
 import { Mail } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { SectionLabel } from "@/components/SectionLabel";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const VP   = { once: false, margin: "-60px" } as const;
@@ -33,15 +34,7 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto flex flex-col h-full">
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={VP}
-          transition={{ duration: 0.55, ease: EASE }}
-          className="text-xs font-semibold tracking-widest uppercase text-neutral-500 mb-6"
-        >
-          05 — Contact
-        </motion.p>
+        <SectionLabel label="05 — Contact" className="mb-6 !text-neutral-500" />
 
         <div className="mb-8 md:mb-10 overflow-hidden">
           <motion.h2

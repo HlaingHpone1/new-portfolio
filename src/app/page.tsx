@@ -1,9 +1,9 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Experience from "@/components/Experience";
-import Projects from "@/components/Projects";
-import Education from "@/components/Education";
+import Hero from "@/templates/Hero";
+import About from "@/templates/About";
+import Experience from "@/templates/Experience";
+import Projects from "@/templates/Projects";
+import Education from "@/templates/Education";
 import Footer from "@/components/Footer";
 
 export default function Home() {

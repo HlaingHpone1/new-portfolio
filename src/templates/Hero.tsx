@@ -7,14 +7,14 @@ import { motion } from "motion/react";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const fadeUp = (delay = 0) => ({
-  initial:    { opacity: 0, y: 28 },
-  animate:    { opacity: 1, y: 0 },
+  initial: { opacity: 0, y: 28 },
+  animate: { opacity: 1, y: 0 },
   transition: { duration: 0.7, ease: EASE, delay },
 });
 
 const fadeIn = (delay = 0) => ({
-  initial:    { opacity: 0 },
-  animate:    { opacity: 1 },
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
   transition: { duration: 0.7, ease: EASE, delay },
 });
 
@@ -25,10 +25,8 @@ export default function Hero() {
       className="font-sans min-h-screen flex items-center px-6 md:px-10 pt-16"
     >
       <div className="max-w-6xl mx-auto w-full py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-10 items-center">
-
         {/* ════ Left — Text Content ════ */}
         <div className="space-y-5 order-2 lg:order-1 lg:col-span-2">
-
           <motion.p
             {...fadeUp(0.05)}
             className="text-sm md:text-base text-neutral-500 dark:text-neutral-400 font-medium tracking-widest uppercase"
@@ -41,9 +39,13 @@ export default function Hero() {
             className="text-[clamp(2rem,4.5vw,3.75rem)] font-bold text-black dark:text-white leading-tight tracking-tight"
           >
             Next.js
-            <span className="text-neutral-200 dark:text-neutral-700 mx-2 font-thin">|</span>
+            <span className="text-neutral-200 dark:text-neutral-700 mx-2 font-thin">
+              |
+            </span>
             TypeScript
-            <span className="text-neutral-200 dark:text-neutral-700 mx-2 font-thin">|</span>
+            <span className="text-neutral-200 dark:text-neutral-700 mx-2 font-thin">
+              |
+            </span>
             <br />
             Frontend Developer
           </motion.h1>
@@ -59,7 +61,8 @@ export default function Hero() {
             {...fadeUp(0.36)}
             className="text-base md:text-lg text-neutral-500 dark:text-neutral-400 font-normal max-w-md leading-relaxed"
           >
-            Building scalable, responsive web applications with modern UI frameworks.
+            Building scalable, responsive web applications with modern UI
+            frameworks.
           </motion.p>
 
           <motion.div
@@ -78,7 +81,12 @@ export default function Hero() {
             <span>Scroll to explore</span>
             <motion.span
               animate={{ y: [0, 4, 0] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              transition={{
+                duration: 1.6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
               className="inline-flex"
             >
               <ArrowDownRight className="w-4 h-4" strokeWidth={1.5} />
@@ -115,7 +123,6 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
-
       </div>
     </section>
   );

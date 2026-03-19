@@ -1,4 +1,21 @@
-export const EXPERIENCES = [
+export type ExperienceProject = {
+  id: string;
+  title: string;
+  techStack: readonly string[];
+  description: string;
+  bullets?: readonly string[];
+};
+
+export type Experience = {
+  role: string;
+  company: string;
+  period: string;
+  current: boolean;
+  highlights: readonly { title: string; body: string }[];
+  projects?: readonly ExperienceProject[];
+};
+
+export const EXPERIENCES: readonly Experience[] = [
   {
     role:    "React Developer",
     company: "Ace Plus Solutions",

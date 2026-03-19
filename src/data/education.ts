@@ -1,4 +1,10 @@
-export const EDUCATION = [
+export type Education = {
+  degree: string;
+  institution: string;
+  period: string;
+};
+
+export const EDUCATION: readonly Education[] = [
   {
     degree:      "Bachelor's Degree in Computing",
     institution: "University of Greenwich",
@@ -7,8 +13,6 @@ export const EDUCATION = [
   {
     degree:      "Level 4 & 5 Diploma of Computing with Business Management",
     institution: "Strategy First University",
-    period:      "2020 – 2023",
+    period:      "2020 - 2023",
   },
-] as const;
-
-export type Education = typeof EDUCATION;
+];

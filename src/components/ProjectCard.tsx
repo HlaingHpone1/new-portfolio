@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight, Plus, Minus } from "lucide-react";
@@ -8,7 +6,7 @@ import { useTheme } from "@/context/ThemeContext";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function FeaturedRow({
+export function ProjectCard({
   project,
   index,
   expanded,
@@ -25,15 +23,57 @@ export function FeaturedRow({
 
   const isOpen = hovered || expanded;
 
-  const defaultBg   = isDark ? "#0a0a0a" : "#ffffff";
-  const activeBg    = isDark ? "#f5f5f5" : "#000000";
-  const indexColor  = isOpen ? (isDark ? "#737373" : "#e5e5e5") : (isDark ? "#404040" : "#a3a3a3");
-  const titleColor  = isOpen ? (isDark ? "#000000" : "#ffffff") : (isDark ? "#ffffff" : "#000000");
-  const labelColor  = isOpen ? (isDark ? "#404040" : "#e5e5e5") : (isDark ? "#737373" : "#737373");
-  const labelBorder = isOpen ? (isDark ? "#525252" : "#737373") : (isDark ? "#2a2a2a" : "#d4d4d4");
-  const techColor   = isOpen ? (isDark ? "#525252" : "#e5e5e5") : (isDark ? "#525252" : "#737373");
-  const arrowColor  = isOpen ? (isDark ? "#000000" : "#ffffff") : (isDark ? "#ffffff" : "#000000");
-  const descColor   = isOpen ? (isDark ? "#525252" : "#e5e5e5") : (isDark ? "#525252" : "#737373");
+  const defaultBg = isDark ? "#0a0a0a" : "#ffffff";
+  const activeBg = isDark ? "#f5f5f5" : "#000000";
+  const indexColor = isOpen
+    ? isDark
+      ? "#737373"
+      : "#e5e5e5"
+    : isDark
+      ? "#404040"
+      : "#a3a3a3";
+  const titleColor = isOpen
+    ? isDark
+      ? "#000000"
+      : "#ffffff"
+    : isDark
+      ? "#ffffff"
+      : "#000000";
+  const labelColor = isOpen
+    ? isDark
+      ? "#404040"
+      : "#e5e5e5"
+    : isDark
+      ? "#737373"
+      : "#737373";
+  const labelBorder = isOpen
+    ? isDark
+      ? "#525252"
+      : "#737373"
+    : isDark
+      ? "#2a2a2a"
+      : "#d4d4d4";
+  const techColor = isOpen
+    ? isDark
+      ? "#525252"
+      : "#e5e5e5"
+    : isDark
+      ? "#525252"
+      : "#737373";
+  const arrowColor = isOpen
+    ? isDark
+      ? "#000000"
+      : "#ffffff"
+    : isDark
+      ? "#ffffff"
+      : "#000000";
+  const descColor = isOpen
+    ? isDark
+      ? "#525252"
+      : "#e5e5e5"
+    : isDark
+      ? "#525252"
+      : "#737373";
 
   const hoverT = { duration: 0.45, ease: EASE };
 

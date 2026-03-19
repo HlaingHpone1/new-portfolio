@@ -8,7 +8,7 @@ export type Project = {
   url?: string;
 };
 
-export const featuredProjects: Project[] = [
+export const FEATURED_PROJECTS: Project[] = [
   {
     id: "clinic-management",
     title: "Clinic Management",
@@ -66,4 +66,4 @@ export const featuredProjects: Project[] = [
   },
 ];
 
-export const otherProjects: Project[] = [];
+export const OTHER_PROJECTS: Project[] = [];
