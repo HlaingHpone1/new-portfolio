@@ -132,3 +132,25 @@ body {
     @apply font-sans;
   }
 }
+
+/* ── View Transition: circular theme reveal from toggle centre ── */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: none;
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    animation: vt-reveal 500ms ease-in-out forwards;
+    z-index: 9999;
+  }
+
+  @keyframes vt-reveal {
+    from {
+      clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 0%));
+    }
+    to {
+      clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 0%));
+    }
+  }
+}

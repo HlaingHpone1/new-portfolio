@@ -33,7 +33,7 @@ export default function Education() {
   return (
     <section
       id="education"
-      className="font-sans px-6 md:px-10 py-14 md:py-18 border-t border-neutral-100"
+      className="font-sans px-6 md:px-10 py-14 md:py-18 border-t border-neutral-100 dark:border-neutral-800"
     >
       <div className="max-w-6xl mx-auto">
 
@@ -54,7 +54,7 @@ export default function Education() {
           whileInView="show"
           viewport={VP}
           variants={rowContainer}
-          className="space-y-0 divide-y divide-neutral-100"
+          className="space-y-0 divide-y divide-neutral-100 dark:divide-neutral-800"
         >
           {EDUCATION.map(({ degree, institution, period }) => (
             <motion.div
@@ -64,10 +64,10 @@ export default function Education() {
             >
               {/* Left */}
               <div className="space-y-0.5">
-                <p className="text-base md:text-lg font-bold text-black tracking-tight">
+                <p className="text-base md:text-lg font-bold text-black dark:text-white tracking-tight">
                   {degree}
                 </p>
-                <p className="text-sm text-neutral-500 font-medium">
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 font-medium">
                   {institution}
                 </p>
               </div>

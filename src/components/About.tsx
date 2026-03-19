@@ -58,7 +58,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="font-sans px-6 md:px-10 py-16 md:py-20 border-t border-neutral-100"
+      className="font-sans px-6 md:px-10 py-16 md:py-20 border-t border-neutral-100 dark:border-neutral-800"
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-start">
         {/* ════════════════════════════════
@@ -76,7 +76,7 @@ export default function About() {
           {/* Heading */}
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-3xl md:text-4xl font-bold text-black tracking-tight leading-tight"
+            className="text-3xl md:text-4xl font-bold text-black dark:text-white tracking-tight leading-tight"
           >
             A developer who cares about
             <br />
@@ -94,7 +94,7 @@ export default function About() {
                 transition: { staggerChildren: 0.12, delayChildren: 0.2 },
               },
             }}
-            className="space-y-3 text-base md:text-lg text-neutral-500 leading-relaxed max-w-prose"
+            className="space-y-3 text-base md:text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-prose"
           >
             <motion.p
               variants={{
@@ -107,11 +107,11 @@ export default function About() {
               }}
             >
               With{" "}
-              <span className="text-black font-semibold">
+              <span className="text-black dark:text-white font-semibold">
                 1+ year of hands-on experience
               </span>{" "}
               specialising in{" "}
-              <span className="text-black font-semibold">
+              <span className="text-black dark:text-white font-semibold">
                 React.js and Next.js
               </span>
               , I build performant, accessible interfaces that users actually
@@ -128,7 +128,7 @@ export default function About() {
               }}
             >
               I thrive in{" "}
-              <span className="text-black font-semibold">
+              <span className="text-black dark:text-white font-semibold">
                 agile environments
               </span>
               , moving fast without cutting corners — focusing on clean
@@ -149,7 +149,7 @@ export default function About() {
 
           <motion.h3
             {...fadeUp(0.05)}
-            className="text-xl font-bold text-black tracking-tight"
+            className="text-xl font-bold text-black dark:text-white tracking-tight"
           >
             Technical Arsenal
           </motion.h3>
@@ -184,7 +184,7 @@ export default function About() {
                     <motion.span
                       key={skill}
                       variants={tagItem}
-                      className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-black border border-black/20 rounded-sm tracking-wide hover:border-black hover:bg-black hover:text-white transition-all duration-500 cursor-default select-none"
+                      className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-black dark:text-white border border-black/20 dark:border-white/20 rounded-sm tracking-wide hover:border-black dark:hover:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-500 cursor-default select-none"
                     >
                       {skill}
                     </motion.span>

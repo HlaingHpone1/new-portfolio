@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-sans",
@@ -31,17 +32,32 @@ export const metadata: Metadata = {
   ],
 };
 
+/* ── Anti-flash: apply saved/system theme before React hydrates ── */
+const ANTI_FLASH = `(function(){
+  try{
+    var s=localStorage.getItem('theme');
+    if(s==='dark'){document.documentElement.classList.add('dark');}
+    else if(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches){
+      document.documentElement.classList.add('dark');
+    }
+  }catch(e){}
+})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        {/* Runs before paint — prevents flash of wrong theme */}
+        <script dangerouslySetInnerHTML={{ __html: ANTI_FLASH }} />
+      </head>
       <body
-        className={`${spaceGrotesk.variable} ${spaceMono.variable} antialiased bg-white text-black selection:bg-black selection:text-white`}
+        className={`${spaceGrotesk.variable} ${spaceMono.variable} antialiased bg-white dark:bg-neutral-950 text-black dark:text-white selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black`}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

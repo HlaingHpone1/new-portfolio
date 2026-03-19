@@ -36,7 +36,7 @@ export default function Hero() {
           {/* Greeting */}
           <motion.p
             {...fadeUp(0.05)}
-            className="text-sm md:text-base text-neutral-500 font-medium tracking-widest uppercase"
+            className="text-sm md:text-base text-neutral-500 dark:text-neutral-400 font-medium tracking-widest uppercase"
           >
             Hi, I&apos;m Hlaing Hpone.
           </motion.p>
@@ -44,12 +44,12 @@ export default function Hero() {
           {/* Heading */}
           <motion.h1
             {...fadeUp(0.15)}
-            className="text-[clamp(2rem,4.5vw,3.75rem)] font-bold text-black leading-tight tracking-tight"
+            className="text-[clamp(2rem,4.5vw,3.75rem)] font-bold text-black dark:text-white leading-tight tracking-tight"
           >
             Next.js
-            <span className="text-neutral-200 mx-2 font-thin">|</span>
+            <span className="text-neutral-200 dark:text-neutral-700 mx-2 font-thin">|</span>
             TypeScript
-            <span className="text-neutral-200 mx-2 font-thin">|</span>
+            <span className="text-neutral-200 dark:text-neutral-700 mx-2 font-thin">|</span>
             <br />
             Frontend Developer
           </motion.h1>
@@ -59,13 +59,13 @@ export default function Hero() {
             initial={{ scaleX: 0, originX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.6, ease: EASE, delay: 0.28 }}
-            className="w-12 h-px bg-black"
+            className="w-12 h-px bg-black dark:bg-white"
           />
 
           {/* Sub-headline */}
           <motion.p
             {...fadeUp(0.36)}
-            className="text-base md:text-lg text-neutral-500 font-normal max-w-md leading-relaxed"
+            className="text-base md:text-lg text-neutral-500 dark:text-neutral-400 font-normal max-w-md leading-relaxed"
           >
             Building scalable, responsive web applications with modern UI
             frameworks.
@@ -74,7 +74,7 @@ export default function Hero() {
           {/* Location Tag */}
           <motion.div
             {...fadeUp(0.44)}
-            className="flex items-center gap-1.5 text-sm text-neutral-400 font-medium tracking-wide"
+            className="flex items-center gap-1.5 text-sm text-neutral-400 dark:text-neutral-500 font-medium tracking-wide"
           >
             <MapPin className="w-4 h-4 shrink-0" strokeWidth={1.75} />
             <span>Yangon, Myanmar</span>
@@ -84,7 +84,7 @@ export default function Hero() {
           <motion.a
             {...fadeIn(0.62)}
             href="#about"
-            className="inline-flex items-center gap-2 pt-1 text-xs text-neutral-300 hover:text-neutral-500 font-medium tracking-widest uppercase transition-colors duration-500"
+            className="inline-flex items-center gap-2 pt-1 text-xs text-neutral-300 hover:text-neutral-500 dark:text-neutral-600 dark:hover:text-neutral-400 font-medium tracking-widest uppercase transition-colors duration-500"
           >
             <span>Scroll to explore</span>
             <motion.span
@@ -112,11 +112,11 @@ export default function Hero() {
               initial={{ opacity: 0, x: 0, y: 0 }}
               animate={{ opacity: 1, x: 12, y: 12 }}
               transition={{ duration: 0.7, ease: EASE, delay: 0.4 }}
-              className="absolute inset-0 bg-neutral-100 rounded-sm"
+              className="absolute inset-0 bg-neutral-100 dark:bg-neutral-800 rounded-sm"
             />
 
             {/* Photo frame */}
-            <div className="relative w-56 h-64 md:w-72 md:h-88 lg:w-80 lg:h-[26rem] overflow-hidden rounded-sm border border-neutral-200 bg-neutral-50">
+            <div className="relative w-56 h-64 md:w-72 md:h-88 lg:w-80 lg:h-[26rem] overflow-hidden rounded-sm border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900">
               <Image
                 src="/mine.jpg"
                 alt="Hlaing Hpone — Frontend Developer"
@@ -127,8 +127,8 @@ export default function Hero() {
               />
 
               {/* Corner accents */}
-              <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-black/20 pointer-events-none" />
-              <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-black/20 pointer-events-none" />
+              <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-black/20 dark:border-white/20 pointer-events-none" />
+              <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-black/20 dark:border-white/20 pointer-events-none" />
             </div>
           </motion.div>
         </div>
