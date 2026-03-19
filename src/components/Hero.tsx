@@ -5,19 +5,19 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center px-6 md:px-10 pt-16"
+      className="font-sans min-h-screen flex items-center px-6 md:px-10 pt-16"
     >
-      <div className="max-w-6xl mx-auto w-full py-20 grid grid-cols-1 lg:grid-cols-3 gap-10 xl:gap-14 items-center">
+      <div className="max-w-6xl mx-auto w-full py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-10 items-center">
         {/* ════════════════════════════════
             Left — Text Content
         ════════════════════════════════ */}
-        <div className="space-y-7 order-2 lg:order-1 lg:col-span-2">
+        <div className="space-y-5 order-2 lg:order-1 lg:col-span-2">
           {/* Greeting */}
           <p className="text-sm md:text-base text-neutral-500 font-medium tracking-widest uppercase">
             Hi, I&apos;m Hlaing Hpone.
           </p>
 
-          <h1 className="text-[clamp(2rem,4.5vw,3.75rem)] font-black text-black leading-tight tracking-tighter">
+          <h1 className="text-[clamp(2rem,4.5vw,3.75rem)] font-bold text-black leading-tight tracking-tight">
             Next.js
             <span className="text-neutral-200 mx-2 font-thin">|</span>
             TypeScript
@@ -44,7 +44,7 @@ export default function Hero() {
           {/* Scroll nudge */}
           <a
             href="#about"
-            className="inline-flex items-center gap-2 pt-2 text-xs text-neutral-300 hover:text-neutral-500 font-medium tracking-widest uppercase transition-colors duration-150"
+            className="inline-flex items-center gap-2 pt-1 text-xs text-neutral-300 hover:text-neutral-500 font-medium tracking-widest uppercase transition-colors duration-150"
           >
             <span>Scroll to explore</span>
             <ArrowDownRight className="w-4 h-4" strokeWidth={1.5} />
@@ -59,12 +59,12 @@ export default function Hero() {
             <div className="absolute inset-0 translate-x-3 translate-y-3 bg-neutral-100 rounded-sm" />
 
             {/* Photo frame */}
-            <div className="relative w-64 h-72 md:w-80 md:h-96 lg:w-[22rem] lg:h-[28rem] overflow-hidden rounded-sm border border-neutral-200 bg-neutral-50">
+            <div className="relative w-56 h-64 md:w-72 md:h-88 lg:w-80 lg:h-[26rem] overflow-hidden rounded-sm border border-neutral-200 bg-neutral-50">
               <Image
                 src="/mine.jpg"
                 alt="Hlaing Hpone — Frontend Developer"
                 fill
-                sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 352px"
+                sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 320px"
                 className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
                 priority
               />

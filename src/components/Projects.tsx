@@ -26,7 +26,7 @@ function FeaturedRow({
       className="border-b border-black cursor-default"
     >
       {/* ── Main row ── */}
-      <div className="flex items-start justify-between gap-6 px-0 py-6 md:py-7">
+      <div className="flex items-start justify-between gap-6 px-0 py-5 md:py-6">
 
         {/* Left — index + title + label */}
         <div className="flex items-baseline gap-5 min-w-0">
@@ -43,7 +43,7 @@ function FeaturedRow({
               <motion.h3
                 animate={{ color: hovered ? "#ffffff" : "#000000" }}
                 transition={{ duration: 0.18 }}
-                className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tighter leading-tight"
+                className="font-sans text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-tight"
               >
                 {project.title}
               </motion.h3>
@@ -135,7 +135,7 @@ function OtherCard({
           <motion.p
             animate={{ color: hovered ? "#ffffff" : "#000000" }}
             transition={{ duration: 0.15 }}
-            className="text-base font-black tracking-tight leading-tight"
+            className="font-sans text-base font-bold tracking-tight leading-tight"
           >
             {project.title}
           </motion.p>
@@ -185,16 +185,16 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="px-6 md:px-10 py-28 md:py-36 border-t border-neutral-100"
+      className="font-sans px-6 md:px-10 py-16 md:py-20 border-t border-neutral-100"
     >
       <div className="max-w-6xl mx-auto">
 
         {/* ── Section header ── */}
-        <div className="mb-12 md:mb-16 space-y-3">
+        <div className="mb-8 md:mb-10 space-y-2">
           <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400">
             03 — Projects
           </p>
-          <h2 className="text-3xl md:text-4xl font-black text-black tracking-tighter leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-black tracking-tight leading-tight">
             Things I&apos;ve built.
           </h2>
         </div>
@@ -207,7 +207,7 @@ export default function Projects() {
         </div>
 
         {/* ── Other Work ── */}
-        <div className="mt-20 md:mt-24">
+        <div className="mt-12 md:mt-14">
           <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-6">
             Other Work
           </p>

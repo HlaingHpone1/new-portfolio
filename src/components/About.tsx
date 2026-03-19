@@ -21,14 +21,14 @@ export default function About() {
   return (
     <section
       id="about"
-      className="px-6 md:px-10 py-28 md:py-36 border-t border-neutral-100"
+      className="font-sans px-6 md:px-10 py-16 md:py-20 border-t border-neutral-100"
     >
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-start">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-start">
 
         {/* ════════════════════════════════
             Left — Section label + Bio
         ════════════════════════════════ */}
-        <div className="space-y-8">
+        <div className="space-y-5">
 
           {/* Section label */}
           <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400">
@@ -36,14 +36,14 @@ export default function About() {
           </p>
 
           {/* Heading */}
-          <h2 className="text-3xl md:text-4xl font-black text-black tracking-tighter leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-black tracking-tight leading-tight">
             A developer who cares about
             <br />
             the details.
           </h2>
 
           {/* Bio */}
-          <div className="space-y-4 text-base md:text-lg text-neutral-500 leading-relaxed max-w-prose">
+          <div className="space-y-3 text-base md:text-lg text-neutral-500 leading-relaxed max-w-prose">
             <p>
               With{" "}
               <span className="text-black font-semibold">
@@ -71,20 +71,20 @@ export default function About() {
         {/* ════════════════════════════════
             Right — Skills Grid
         ════════════════════════════════ */}
-        <div className="space-y-8">
+        <div className="space-y-5">
 
           {/* Section label (hidden on mobile, keeps columns aligned) */}
           <p className="hidden lg:block text-xs font-semibold tracking-widest uppercase text-transparent select-none">
             —
           </p>
 
-          <h3 className="text-xl font-black text-black tracking-tight">
+          <h3 className="text-xl font-bold text-black tracking-tight">
             Technical Arsenal
           </h3>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {SKILLS.map(({ category, items }) => (
-              <div key={category} className="space-y-3">
+              <div key={category} className="space-y-2">
 
                 {/* Category label */}
                 <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400">

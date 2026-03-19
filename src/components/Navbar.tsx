@@ -29,14 +29,14 @@ export default function Navbar() {
           : "bg-white"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+      <nav className="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between font-sans">
         {/* ── Logo ── */}
         <Link
           href="/"
           aria-label="Home"
-          className="text-xl font-black tracking-tighter text-black select-none hover:opacity-70 transition-opacity duration-150"
+          className="font-mono text-base font-bold tracking-tight text-black select-none hover:opacity-60 transition-opacity duration-150"
         >
-          HH
+          HH.
         </Link>
 
         {/* ── Desktop Nav Links ── */}
@@ -56,7 +56,7 @@ export default function Navbar() {
         <a
           href="/cv.pdf"
           download
-          className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-semibold rounded hover:bg-neutral-800 active:scale-95 transition-all duration-150 select-none"
+          className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-semibold tracking-wide rounded hover:bg-neutral-800 active:scale-95 transition-all duration-150 select-none"
         >
           <Download className="w-3.5 h-3.5" strokeWidth={2.5} />
           Download CV
@@ -93,13 +93,13 @@ export default function Navbar() {
           menuOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <ul className="flex flex-col px-6 py-4 gap-4" role="list">
+        <ul className="flex flex-col px-6 py-4 gap-4 font-sans" role="list">
           {NAV_LINKS.map(({ label, href }) => (
             <li key={label}>
               <Link
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium text-neutral-600 hover:text-black transition-colors duration-150"
+                className="text-sm font-medium text-neutral-600 hover:text-black transition-colors duration-150 tracking-wide"
               >
                 {label}
               </Link>
@@ -109,7 +109,7 @@ export default function Navbar() {
             <a
               href="/cv.pdf"
               download
-              className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-semibold rounded hover:bg-neutral-800 transition-colors duration-150"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-semibold tracking-wide rounded hover:bg-neutral-800 transition-colors duration-150"
             >
               <Download className="w-3.5 h-3.5" strokeWidth={2.5} />
               Download CV

@@ -15,12 +15,12 @@ export default function Education() {
   return (
     <section
       id="education"
-      className="px-6 md:px-10 py-20 md:py-28 border-t border-neutral-100"
+      className="font-sans px-6 md:px-10 py-14 md:py-18 border-t border-neutral-100"
     >
       <div className="max-w-6xl mx-auto">
 
         {/* ── Section header ── */}
-        <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-10">
+        <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-6">
           04 — Education
         </p>
 
@@ -29,11 +29,11 @@ export default function Education() {
           {EDUCATION.map(({ degree, institution, period }) => (
             <div
               key={institution}
-              className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-5"
+              className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-4"
             >
               {/* Left */}
               <div className="space-y-0.5">
-                <p className="text-base md:text-lg font-black text-black tracking-tight">
+                <p className="text-base md:text-lg font-bold text-black tracking-tight">
                   {degree}
                 </p>
                 <p className="text-sm text-neutral-500 font-medium">

@@ -31,27 +31,27 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="bg-black text-white px-6 md:px-10 pt-24 pb-12 md:pt-32 md:pb-16"
+      className="bg-black text-white px-6 md:px-10 pt-14 pb-10 md:pt-20 md:pb-12"
     >
       <div className="max-w-6xl mx-auto flex flex-col h-full">
 
         {/* ── Section label ── */}
-        <p className="text-xs font-semibold tracking-widest uppercase text-neutral-500 mb-10">
+        <p className="text-xs font-semibold tracking-widest uppercase text-neutral-500 mb-6">
           05 — Contact
         </p>
 
         {/* ── Large heading ── */}
-        <h2 className="text-[clamp(2.5rem,8vw,7rem)] font-black tracking-tighter leading-[0.92] text-white mb-12 md:mb-16">
+        <h2 className="text-[clamp(2.5rem,8vw,7rem)] font-bold tracking-tight leading-[0.95] text-white mb-8 md:mb-10">
           Let&apos;s Build
           <br />
           Something.
         </h2>
 
         {/* ── Divider ── */}
-        <div className="w-full h-px bg-white/10 mb-12" />
+        <div className="w-full h-px bg-white/10 mb-8" />
 
         {/* ── Contact row ── */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
 
           {/* Email */}
           <a
@@ -90,7 +90,7 @@ export default function Footer() {
         </div>
 
         {/* ── Bottom bar ── */}
-        <div className="mt-16 md:mt-20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-neutral-600 font-mono">
+        <div className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-neutral-600 font-mono">
           <span>© {new Date().getFullYear()} Hlaing Hpone. All rights reserved.</span>
           <span>Built with Next.js &amp; TypeScript.</span>
         </div>

@@ -33,16 +33,16 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="px-6 md:px-10 py-28 md:py-36 border-t border-neutral-100"
+      className="font-sans px-6 md:px-10 py-16 md:py-20 border-t border-neutral-100"
     >
       <div className="max-w-6xl mx-auto">
 
         {/* ── Section header ── */}
-        <div className="mb-16 md:mb-20 space-y-3">
+        <div className="mb-10 md:mb-12 space-y-2">
           <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400">
             02 — Experience
           </p>
-          <h2 className="text-3xl md:text-4xl font-black text-black tracking-tighter leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-black tracking-tight leading-tight">
             Where I&apos;ve worked.
           </h2>
         </div>
@@ -53,7 +53,7 @@ export default function Experience() {
           {/* Vertical rail */}
           <div className="absolute left-0 top-0 bottom-0 w-px bg-black/10" />
 
-          <div className="space-y-16">
+          <div className="space-y-10">
             {EXPERIENCES.map((exp) => (
               <div key={`${exp.company}-${exp.role}`} className="relative pl-10 md:pl-14">
 
@@ -61,9 +61,9 @@ export default function Experience() {
                 <div className="absolute left-0 top-1.5 -translate-x-1/2 w-3 h-3 rounded-full bg-black border-2 border-white ring-1 ring-black" />
 
                 {/* Entry header */}
-                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-6">
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-4">
                   <div>
-                    <h3 className="text-xl md:text-2xl font-black text-black tracking-tight">
+                    <h3 className="text-xl md:text-2xl font-bold text-black tracking-tight">
                       {exp.role}
                     </h3>
                     <p className="text-base font-semibold text-neutral-500 mt-0.5">
@@ -86,7 +86,7 @@ export default function Experience() {
                 </div>
 
                 {/* Highlight bullets */}
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {exp.highlights.map((item) => (
                     <li key={item.title} className="flex items-center gap-3 group">
                       {/* Bullet dash */}
