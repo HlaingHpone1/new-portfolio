@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Plus, Minus } from "lucide-react";
 import { featuredProjects, otherProjects } from "@/data/projects";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+const VP = { once: true, margin: "-80px" } as const;
 
 /* ─────────────────────────────────────────
    Featured Row
@@ -11,28 +14,41 @@ import { featuredProjects, otherProjects } from "@/data/projects";
 function FeaturedRow({
   project,
   index,
+  expanded,
+  onToggle,
 }: {
   project: (typeof featuredProjects)[number];
   index: number;
+  expanded: boolean;
+  onToggle: () => void;
 }) {
   const [hovered, setHovered] = useState(false);
+
+  /* ── isOpen drives all color + visibility ── */
+  const isOpen = hovered || expanded;
+
+  /* ── Hover transition shared config ── */
+  const hoverT = { duration: 0.45, ease: EASE };
 
   return (
     <motion.div
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      animate={{ backgroundColor: hovered ? "#000000" : "#ffffff" }}
-      transition={{ duration: 0.18, ease: "easeInOut" }}
-      className="border-b border-black cursor-default"
+      animate={{ backgroundColor: isOpen ? "#000000" : "#ffffff" }}
+      transition={hoverT}
+      className="border-b border-black font-sans"
     >
-      {/* ── Main row ── */}
-      <div className="flex items-start justify-between gap-6 px-0 py-5 md:py-6">
+      {/* ── Main row — full row is tappable on mobile ── */}
+      <div
+        className="flex items-start justify-between gap-6 px-0 py-5 md:py-6 md:cursor-default cursor-pointer"
+        onClick={onToggle}
+      >
 
         {/* Left — index + title + label */}
         <div className="flex items-baseline gap-5 min-w-0">
           <motion.span
-            animate={{ color: hovered ? "#525252" : "#a3a3a3" }}
-            transition={{ duration: 0.18 }}
+            animate={{ color: isOpen ? "#e5e5e5" : "#a3a3a3" }}
+            transition={hoverT}
             className="font-mono text-xs shrink-0 tabular-nums"
           >
             {String(index + 1).padStart(2, "0")}
@@ -41,8 +57,8 @@ function FeaturedRow({
           <div className="min-w-0">
             <div className="flex flex-wrap items-baseline gap-3">
               <motion.h3
-                animate={{ color: hovered ? "#ffffff" : "#000000" }}
-                transition={{ duration: 0.18 }}
+                animate={{ color: isOpen ? "#ffffff" : "#000000" }}
+                transition={hoverT}
                 className="font-sans text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-tight"
               >
                 {project.title}
@@ -51,10 +67,10 @@ function FeaturedRow({
               {project.label && (
                 <motion.span
                   animate={{
-                    color: hovered ? "#a3a3a3" : "#737373",
-                    borderColor: hovered ? "#525252" : "#d4d4d4",
+                    color: isOpen ? "#e5e5e5" : "#737373",
+                    borderColor: isOpen ? "#737373" : "#d4d4d4",
                   }}
-                  transition={{ duration: 0.18 }}
+                  transition={hoverT}
                   className="text-[10px] font-mono font-semibold tracking-widest uppercase border px-2 py-0.5 rounded-sm"
                 >
                   {project.label}
@@ -62,14 +78,14 @@ function FeaturedRow({
               )}
             </div>
 
-            {/* Tech tags — always visible */}
+            {/* Tech tags */}
             <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2">
               {project.techStack.map((tech) => (
                 <motion.span
                   key={tech}
-                  animate={{ color: hovered ? "#737373" : "#737373" }}
-                  transition={{ duration: 0.18 }}
-                  className="font-mono text-[11px] tracking-wide"
+                  animate={{ color: isOpen ? "#e5e5e5" : "#737373" }}
+                  transition={hoverT}
+                  className="text-sm tracking-wide"
                 >
                   {tech}
                 </motion.span>
@@ -78,33 +94,50 @@ function FeaturedRow({
           </div>
         </div>
 
-        {/* Right — arrow */}
+        {/* Right — desktop arrow / mobile toggle */}
+        {/* Desktop: rotating ArrowUpRight (hover only) */}
         <motion.div
           animate={{
-            color: hovered ? "#ffffff" : "#000000",
-            rotate: hovered ? 0 : -45,
+            color: isOpen ? "#ffffff" : "#000000",
+            rotate: isOpen ? 0 : -45,
           }}
-          transition={{ duration: 0.18 }}
-          className="shrink-0 mt-1"
+          transition={hoverT}
+          className="hidden md:block shrink-0 mt-1"
         >
           <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" strokeWidth={1.75} />
         </motion.div>
+
+        {/* Mobile: +/− hint icon */}
+        <motion.div
+          animate={{ color: isOpen ? "#ffffff" : "#000000" }}
+          transition={hoverT}
+          className="md:hidden shrink-0 mt-1"
+        >
+          {expanded
+            ? <Minus className="w-5 h-5" strokeWidth={1.75} />
+            : <Plus  className="w-5 h-5" strokeWidth={1.75} />
+          }
+        </motion.div>
       </div>
 
-      {/* ── Description — revealed on hover ── */}
+      {/* ── Description — hover on desktop, tap-toggle on mobile ── */}
       <AnimatePresence>
-        {hovered && (
+        {isOpen && (
           <motion.div
             key="desc"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: "easeInOut" }}
+            transition={{ duration: 0.42, ease: EASE }}
             className="overflow-hidden"
           >
-            <p className="font-mono text-xs md:text-sm text-neutral-400 leading-relaxed pb-6 pl-10 md:pl-12 max-w-2xl">
+            <motion.p
+              animate={{ color: isOpen ? "#e5e5e5" : "#737373" }}
+              transition={hoverT}
+              className="text-sm md:text-base font-sans leading-relaxed pb-6 pl-10 md:pl-12 max-w-2xl"
+            >
               {project.description}
-            </p>
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -115,65 +148,82 @@ function FeaturedRow({
 /* ─────────────────────────────────────────
    Other Work Card
 ───────────────────────────────────────── */
-function OtherCard({
-  project,
-}: {
-  project: (typeof otherProjects)[number];
-}) {
+function OtherCard({ project }: { project: (typeof otherProjects)[number] }) {
   const [hovered, setHovered] = useState(false);
+
+  /* ── Hover transition shared config ── */
+  const hoverT = { duration: 0.42, ease: EASE };
 
   return (
     <motion.div
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       animate={{ backgroundColor: hovered ? "#000000" : "#ffffff" }}
-      transition={{ duration: 0.15 }}
-      className="border-b border-black py-4 px-0"
+      transition={hoverT}
+      className="border-b border-black px-5 py-5 flex flex-col gap-4 font-sans"
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0 space-y-1.5">
+      {/* ── Title + Tech ── */}
+      <div className="space-y-2">
+        <div className="flex items-start justify-between gap-3">
           <motion.p
             animate={{ color: hovered ? "#ffffff" : "#000000" }}
-            transition={{ duration: 0.15 }}
+            transition={hoverT}
             className="font-sans text-base font-bold tracking-tight leading-tight"
           >
             {project.title}
           </motion.p>
 
-          <div className="flex flex-wrap gap-x-2 gap-y-0.5">
-            {project.techStack.map((tech) => (
-              <motion.span
-                key={tech}
-                animate={{ color: hovered ? "#737373" : "#a3a3a3" }}
-                transition={{ duration: 0.15 }}
-                className="font-mono text-[10px] tracking-wide"
-              >
-                {tech}
-              </motion.span>
-            ))}
-          </div>
+          {project.label && (
+            <motion.span
+              animate={{
+                color: hovered ? "#e5e5e5" : "#737373",
+                borderColor: hovered ? "#737373" : "#e5e5e5",
+              }}
+              transition={hoverT}
+              className="text-[9px]  font-semibold tracking-widest uppercase border px-1.5 py-0.5 rounded-sm shrink-0"
+            >
+              {project.label}
+            </motion.span>
+          )}
         </div>
 
-        <motion.div
-          animate={{ color: hovered ? "#ffffff" : "#000000" }}
-          transition={{ duration: 0.15 }}
-          className="shrink-0 mt-0.5"
-        >
-          {project.url ? (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit ${project.title}`}
-              onClick={(e) => e.stopPropagation()}
+        <div className="flex flex-wrap gap-x-2 gap-y-0.5">
+          {project.techStack.map((tech) => (
+            <motion.span
+              key={tech}
+              animate={{ color: hovered ? "#e5e5e5" : "#737373" }}
+              transition={hoverT}
+              className=" text-xs  tracking-wide"
             >
-              <ArrowUpRight className="w-4 h-4" strokeWidth={1.75} />
-            </a>
-          ) : (
-            <ArrowUpRight className="w-4 h-4" strokeWidth={1.75} />
-          )}
-        </motion.div>
+              {tech}
+            </motion.span>
+          ))}
+        </div>
       </div>
+
+      {/* ── View Project button ── */}
+      {project.url && (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="self-start"
+        >
+          <motion.span
+            animate={{
+              color: hovered ? "#000000" : "#ffffff",
+              backgroundColor: hovered ? "#ffffff" : "#000000",
+              borderColor: hovered ? "#ffffff" : "#000000",
+            }}
+            transition={hoverT}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold tracking-wide rounded-sm border select-none"
+          >
+            <ArrowUpRight className="w-3 h-3" strokeWidth={2.5} />
+            View Project
+          </motion.span>
+        </a>
+      )}
     </motion.div>
   );
 }
@@ -182,35 +232,63 @@ function OtherCard({
    Main Section
 ───────────────────────────────────────── */
 export default function Projects() {
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const handleToggle = (id: string) =>
+    setExpandedId((prev) => (prev === id ? null : id));
+
   return (
     <section
       id="projects"
       className="font-sans px-6 md:px-10 py-16 md:py-20 border-t border-neutral-100"
     >
       <div className="max-w-6xl mx-auto">
-
         {/* ── Section header ── */}
         <div className="mb-8 md:mb-10 space-y-2">
-          <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={VP}
+            transition={{ duration: 0.55, ease: EASE }}
+            className="text-xs font-semibold tracking-widest uppercase text-neutral-400"
+          >
             03 — Projects
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-black tracking-tight leading-tight">
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VP}
+            transition={{ duration: 0.65, ease: EASE, delay: 0.08 }}
+            className="text-3xl md:text-4xl font-bold text-black tracking-tight leading-tight"
+          >
             Things I&apos;ve built.
-          </h2>
+          </motion.h2>
         </div>
 
         {/* ── Top border of list ── */}
         <div className="border-t border-black">
           {featuredProjects.map((project, index) => (
-            <FeaturedRow key={project.id} project={project} index={index} />
+            <FeaturedRow
+              key={project.id}
+              project={project}
+              index={index}
+              expanded={expandedId === project.id}
+              onToggle={() => handleToggle(project.id)}
+            />
           ))}
         </div>
 
         {/* ── Other Work ── */}
         <div className="mt-12 md:mt-14">
-          <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-6">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={VP}
+            transition={{ duration: 0.55, ease: EASE }}
+            className="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-6"
+          >
             Other Work
-          </p>
+          </motion.p>
 
           <div className="border-t border-black grid grid-cols-1 sm:grid-cols-2 gap-x-12">
             {otherProjects.map((project) => (
@@ -218,7 +296,6 @@ export default function Projects() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

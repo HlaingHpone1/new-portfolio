@@ -34,7 +34,7 @@ export default function Navbar() {
         <Link
           href="/"
           aria-label="Home"
-          className="font-mono text-base font-bold tracking-tight text-black select-none hover:opacity-60 transition-opacity duration-150"
+          className="font-mono text-base font-bold tracking-tight text-black select-none hover:opacity-60 transition-opacity duration-500"
         >
           HH.
         </Link>
@@ -45,7 +45,7 @@ export default function Navbar() {
             <li key={label}>
               <Link
                 href={href}
-                className="text-sm font-medium text-neutral-500 hover:text-black transition-colors duration-150 tracking-wide"
+                className="text-sm font-medium text-neutral-500 hover:text-black transition-colors duration-500 tracking-wide"
               >
                 {label}
               </Link>
@@ -56,7 +56,7 @@ export default function Navbar() {
         <a
           href="/cv.pdf"
           download
-          className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-semibold tracking-wide rounded hover:bg-neutral-800 active:scale-95 transition-all duration-150 select-none"
+          className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-semibold tracking-wide rounded hover:bg-neutral-800 active:scale-95 transition-all duration-500 select-none"
         >
           <Download className="w-3.5 h-3.5" strokeWidth={2.5} />
           Download CV
@@ -99,7 +99,7 @@ export default function Navbar() {
               <Link
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium text-neutral-600 hover:text-black transition-colors duration-150 tracking-wide"
+                className="text-sm font-medium text-neutral-600 hover:text-black transition-colors duration-500 tracking-wide"
               >
                 {label}
               </Link>
@@ -109,7 +109,7 @@ export default function Navbar() {
             <a
               href="/cv.pdf"
               download
-              className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-semibold tracking-wide rounded hover:bg-neutral-800 transition-colors duration-150"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-semibold tracking-wide rounded hover:bg-neutral-800 transition-colors duration-500"
             >
               <Download className="w-3.5 h-3.5" strokeWidth={2.5} />
               Download CV

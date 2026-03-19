@@ -1,5 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import { MapPin, ArrowDownRight } from "lucide-react";
+import { motion } from "motion/react";
+
+/* ─── Shared easing ─────────────────────────────────── */
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+/* ─── Variants ──────────────────────────────────────── */
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 28 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, ease: EASE, delay },
+});
+
+const fadeIn = (delay = 0) => ({
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.7, ease: EASE, delay },
+});
 
 export default function Hero() {
   return (
@@ -8,55 +27,93 @@ export default function Hero() {
       className="font-sans min-h-screen flex items-center px-6 md:px-10 pt-16"
     >
       <div className="max-w-6xl mx-auto w-full py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-10 items-center">
+
         {/* ════════════════════════════════
             Left — Text Content
         ════════════════════════════════ */}
         <div className="space-y-5 order-2 lg:order-1 lg:col-span-2">
-          {/* Greeting */}
-          <p className="text-sm md:text-base text-neutral-500 font-medium tracking-widest uppercase">
-            Hi, I&apos;m Hlaing Hpone.
-          </p>
 
-          <h1 className="text-[clamp(2rem,4.5vw,3.75rem)] font-bold text-black leading-tight tracking-tight">
+          {/* Greeting */}
+          <motion.p
+            {...fadeUp(0.05)}
+            className="text-sm md:text-base text-neutral-500 font-medium tracking-widest uppercase"
+          >
+            Hi, I&apos;m Hlaing Hpone.
+          </motion.p>
+
+          {/* Heading */}
+          <motion.h1
+            {...fadeUp(0.15)}
+            className="text-[clamp(2rem,4.5vw,3.75rem)] font-bold text-black leading-tight tracking-tight"
+          >
             Next.js
             <span className="text-neutral-200 mx-2 font-thin">|</span>
             TypeScript
             <span className="text-neutral-200 mx-2 font-thin">|</span>
             <br />
             Frontend Developer
-          </h1>
+          </motion.h1>
 
           {/* Divider */}
-          <div className="w-12 h-px bg-black" />
+          <motion.div
+            initial={{ scaleX: 0, originX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, ease: EASE, delay: 0.28 }}
+            className="w-12 h-px bg-black"
+          />
 
           {/* Sub-headline */}
-          <p className="text-base md:text-lg text-neutral-500 font-normal max-w-md leading-relaxed">
+          <motion.p
+            {...fadeUp(0.36)}
+            className="text-base md:text-lg text-neutral-500 font-normal max-w-md leading-relaxed"
+          >
             Building scalable, responsive web applications with modern UI
             frameworks.
-          </p>
+          </motion.p>
 
           {/* Location Tag */}
-          <div className="flex items-center gap-1.5 text-sm text-neutral-400 font-medium tracking-wide">
+          <motion.div
+            {...fadeUp(0.44)}
+            className="flex items-center gap-1.5 text-sm text-neutral-400 font-medium tracking-wide"
+          >
             <MapPin className="w-4 h-4 shrink-0" strokeWidth={1.75} />
             <span>Yangon, Myanmar</span>
-          </div>
+          </motion.div>
 
           {/* Scroll nudge */}
-          <a
+          <motion.a
+            {...fadeIn(0.62)}
             href="#about"
-            className="inline-flex items-center gap-2 pt-1 text-xs text-neutral-300 hover:text-neutral-500 font-medium tracking-widest uppercase transition-colors duration-150"
+            className="inline-flex items-center gap-2 pt-1 text-xs text-neutral-300 hover:text-neutral-500 font-medium tracking-widest uppercase transition-colors duration-500"
           >
             <span>Scroll to explore</span>
-            <ArrowDownRight className="w-4 h-4" strokeWidth={1.5} />
-          </a>
+            <motion.span
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="inline-flex"
+            >
+              <ArrowDownRight className="w-4 h-4" strokeWidth={1.5} />
+            </motion.span>
+          </motion.a>
         </div>
 
         {/* ════════════════════════════════
             Right — Photo
         ════════════════════════════════ */}
         <div className="order-1 lg:order-2 lg:col-span-1 flex justify-center lg:justify-end">
-          <div className="relative">
-            <div className="absolute inset-0 translate-x-3 translate-y-3 bg-neutral-100 rounded-sm" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: EASE, delay: 0.1 }}
+            className="relative"
+          >
+            {/* Shadow offset block */}
+            <motion.div
+              initial={{ opacity: 0, x: 0, y: 0 }}
+              animate={{ opacity: 1, x: 12, y: 12 }}
+              transition={{ duration: 0.7, ease: EASE, delay: 0.4 }}
+              className="absolute inset-0 bg-neutral-100 rounded-sm"
+            />
 
             {/* Photo frame */}
             <div className="relative w-56 h-64 md:w-72 md:h-88 lg:w-80 lg:h-[26rem] overflow-hidden rounded-sm border border-neutral-200 bg-neutral-50">
@@ -73,8 +130,9 @@ export default function Hero() {
               <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-black/20 pointer-events-none" />
               <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-black/20 pointer-events-none" />
             </div>
-          </div>
+          </motion.div>
         </div>
+
       </div>
     </section>
   );

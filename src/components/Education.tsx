@@ -1,3 +1,10 @@
+"use client";
+
+import { motion } from "motion/react";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+const VP   = { once: true, margin: "-60px" } as const;
+
 const EDUCATION = [
   {
     degree: "Bachelor's Degree in Computing",
@@ -11,6 +18,17 @@ const EDUCATION = [
   },
 ] as const;
 
+/* ── Stagger container ── */
+const rowContainer = {
+  hidden: {},
+  show:   { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
+const rowItem = {
+  hidden: { opacity: 0, y: 20 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+};
+
 export default function Education() {
   return (
     <section
@@ -20,15 +38,28 @@ export default function Education() {
       <div className="max-w-6xl mx-auto">
 
         {/* ── Section header ── */}
-        <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-6">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={VP}
+          transition={{ duration: 0.55, ease: EASE }}
+          className="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-6"
+        >
           04 — Education
-        </p>
+        </motion.p>
 
         {/* ── Entries ── */}
-        <div className="space-y-0 divide-y divide-neutral-100">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={VP}
+          variants={rowContainer}
+          className="space-y-0 divide-y divide-neutral-100"
+        >
           {EDUCATION.map(({ degree, institution, period }) => (
-            <div
+            <motion.div
               key={institution}
+              variants={rowItem}
               className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-4"
             >
               {/* Left */}
@@ -45,9 +76,9 @@ export default function Education() {
               <span className="font-mono text-xs text-neutral-400 font-bold shrink-0 sm:text-right">
                 {period}
               </span>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

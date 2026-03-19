@@ -1,3 +1,10 @@
+"use client";
+
+import { motion } from "motion/react";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+const VP   = { once: true, margin: "-80px" } as const;
+
 const EXPERIENCES = [
   {
     role: "React Developer",
@@ -29,6 +36,17 @@ const EXPERIENCES = [
   },
 ] as const;
 
+/* ── List stagger ── */
+const listContainer = {
+  hidden: {},
+  show:   { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
+};
+
+const listItem = {
+  hidden: { opacity: 0, x: -20 },
+  show:   { opacity: 1, x: 0, transition: { duration: 0.6, ease: EASE } },
+};
+
 export default function Experience() {
   return (
     <section
@@ -39,26 +57,57 @@ export default function Experience() {
 
         {/* ── Section header ── */}
         <div className="mb-10 md:mb-12 space-y-2">
-          <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={VP}
+            transition={{ duration: 0.55, ease: EASE }}
+            className="text-xs font-semibold tracking-widest uppercase text-neutral-400"
+          >
             02 — Experience
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-black tracking-tight leading-tight">
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VP}
+            transition={{ duration: 0.65, ease: EASE, delay: 0.08 }}
+            className="text-3xl md:text-4xl font-bold text-black tracking-tight leading-tight"
+          >
             Where I&apos;ve worked.
-          </h2>
+          </motion.h2>
         </div>
 
         {/* ── Timeline ── */}
         <div className="relative">
 
-          {/* Vertical rail */}
-          <div className="absolute left-0 top-0 bottom-0 w-px bg-black/10" />
+          {/* Vertical rail — grows down on scroll */}
+          <motion.div
+            initial={{ scaleY: 0, originY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={VP}
+            transition={{ duration: 1.1, ease: EASE }}
+            className="absolute left-0 top-0 bottom-0 w-px bg-black/10"
+          />
 
           <div className="space-y-10">
-            {EXPERIENCES.map((exp) => (
-              <div key={`${exp.company}-${exp.role}`} className="relative pl-10 md:pl-14">
+            {EXPERIENCES.map((exp, expIdx) => (
+              <motion.div
+                key={`${exp.company}-${exp.role}`}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={VP}
+                transition={{ duration: 0.7, ease: EASE, delay: expIdx * 0.1 }}
+                className="relative pl-10 md:pl-14"
+              >
 
                 {/* Dot marker */}
-                <div className="absolute left-0 top-1.5 -translate-x-1/2 w-3 h-3 rounded-full bg-black border-2 border-white ring-1 ring-black" />
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={VP}
+                  transition={{ duration: 0.4, ease: EASE, delay: 0.2 + expIdx * 0.1 }}
+                  className="absolute left-0 top-1.5 -translate-x-1/2 w-3 h-3 rounded-full bg-black border-2 border-white ring-1 ring-black"
+                />
 
                 {/* Entry header */}
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-4">
@@ -71,7 +120,11 @@ export default function Experience() {
                     </p>
                   </div>
 
-                  <span
+                  <motion.span
+                    initial={{ opacity: 0, x: 16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={VP}
+                    transition={{ duration: 0.55, ease: EASE, delay: 0.25 }}
                     className={`inline-flex items-center gap-1.5 self-start sm:self-auto px-3 py-1 text-xs font-semibold tracking-widest uppercase rounded-sm border shrink-0 ${
                       exp.current
                         ? "bg-black text-white border-black"
@@ -82,32 +135,46 @@ export default function Experience() {
                       <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" />
                     )}
                     {exp.period}
-                  </span>
+                  </motion.span>
                 </div>
 
                 {/* Highlight bullets */}
-                <ul className="space-y-3">
+                <motion.ul
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={VP}
+                  variants={listContainer}
+                  className="space-y-3"
+                >
                   {exp.highlights.map((item) => (
-                    <li key={item.title} className="flex items-center gap-3 group">
+                    <motion.li
+                      key={item.title}
+                      variants={listItem}
+                      className="flex items-center gap-3 group"
+                    >
                       {/* Bullet dash */}
-                      <span className="shrink-0 w-4 h-px bg-black/30 group-hover:bg-black transition-colors duration-150" />
+                      <span className="shrink-0 w-4 h-px bg-black/30 group-hover:bg-black transition-colors duration-500" />
 
                       <p className="text-sm md:text-base text-neutral-600 leading-relaxed">
-                        <span className="font-semibold text-black">
-                          {item.title}:{" "}
-                        </span>
+                        <span className="font-semibold text-black">{item.title}:{" "}</span>
                         {item.body}
                       </p>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
 
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Timeline end cap */}
-          <div className="absolute left-0 bottom-0 -translate-x-1/2 w-2 h-2 rounded-full bg-black/20" />
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={VP}
+            transition={{ duration: 0.4, ease: EASE, delay: 0.5 }}
+            className="absolute left-0 bottom-0 -translate-x-1/2 w-2 h-2 rounded-full bg-black/20"
+          />
         </div>
 
       </div>
