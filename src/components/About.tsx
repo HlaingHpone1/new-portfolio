@@ -15,7 +15,7 @@ const SKILLS: { category: string; items: string[] }[] = [
 ];
 
 /* ── Shared viewport config ── */
-const VP = { once: true, margin: "-80px" } as const;
+const VP = { once: false, margin: "-80px" } as const;
 
 /* ── Reusable animation props ── */
 const fadeUp = (delay = 0) => ({

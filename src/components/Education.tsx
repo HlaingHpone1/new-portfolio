@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const VP   = { once: true, margin: "-60px" } as const;
+const VP   = { once: false, margin: "-60px" } as const;
 
 const EDUCATION = [
   {

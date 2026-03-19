@@ -6,7 +6,7 @@ import { ArrowUpRight, Plus, Minus } from "lucide-react";
 import { featuredProjects, otherProjects } from "@/data/projects";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const VP = { once: true, margin: "-80px" } as const;
+const VP = { once: false, margin: "-80px" } as const;
 
 /* ─────────────────────────────────────────
    Featured Row
@@ -43,7 +43,6 @@ function FeaturedRow({
         className="flex items-start justify-between gap-6 px-0 py-5 md:py-6 md:cursor-default cursor-pointer"
         onClick={onToggle}
       >
-
         {/* Left — index + title + label */}
         <div className="flex items-baseline gap-5 min-w-0">
           <motion.span
@@ -113,10 +112,11 @@ function FeaturedRow({
           transition={hoverT}
           className="md:hidden shrink-0 mt-1"
         >
-          {expanded
-            ? <Minus className="w-5 h-5" strokeWidth={1.75} />
-            : <Plus  className="w-5 h-5" strokeWidth={1.75} />
-          }
+          {expanded ? (
+            <Minus className="w-5 h-5" strokeWidth={1.75} />
+          ) : (
+            <Plus className="w-5 h-5" strokeWidth={1.75} />
+          )}
         </motion.div>
       </div>
 
@@ -240,7 +240,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="font-sans px-6 md:px-10 py-16 md:py-20 border-t border-neutral-100"
+      className="font-sans px-6 md:px-10 py-16 md:py-20 border-t border-neutral-100 overflow-x-hidden"
     >
       <div className="max-w-6xl mx-auto">
         {/* ── Section header ── */}
@@ -268,13 +268,20 @@ export default function Projects() {
         {/* ── Top border of list ── */}
         <div className="border-t border-black">
           {featuredProjects.map((project, index) => (
-            <FeaturedRow
+            <motion.div
               key={project.id}
-              project={project}
-              index={index}
-              expanded={expandedId === project.id}
-              onToggle={() => handleToggle(project.id)}
-            />
+              initial={{ opacity: 0, y: 48 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: "-150px 0px -60px 0px" }}
+              transition={{ duration: 0.6, ease: EASE, delay: index * 0.1 }}
+            >
+              <FeaturedRow
+                project={project}
+                index={index}
+                expanded={expandedId === project.id}
+                onToggle={() => handleToggle(project.id)}
+              />
+            </motion.div>
           ))}
         </div>
 
@@ -291,9 +298,24 @@ export default function Projects() {
           </motion.p>
 
           <div className="border-t border-black grid grid-cols-1 sm:grid-cols-2 gap-x-12">
-            {otherProjects.map((project) => (
-              <OtherCard key={project.id} project={project} />
-            ))}
+            {otherProjects.map((project, index) => {
+              const isRight = index % 2 !== 0;
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, x: isRight ? 48 : -48 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: false, margin: "-150px 0px -60px 0px" }}
+                  transition={{
+                    duration: 0.6,
+                    ease: EASE,
+                    delay: index * 0.08,
+                  }}
+                >
+                  <OtherCard project={project} />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
