@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import { EXPERIENCES } from "@/data/experiences";
+import { FeaturedRow } from "@/components/FeaturedRow";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const VP   = { once: false, margin: "-80px" } as const;
@@ -17,6 +19,14 @@ const listItem = {
 };
 
 export default function Experience() {
+  const [expandedIds, setExpandedIds] = useState<Record<string, string | null>>({});
+
+  const handleToggle = (expKey: string, projectId: string) =>
+    setExpandedIds((prev) => ({
+      ...prev,
+      [expKey]: prev[expKey] === projectId ? null : projectId,
+    }));
+
   return (
     <section
       id="experience"
@@ -123,6 +133,38 @@ export default function Experience() {
                     </motion.li>
                   ))}
                 </motion.ul>
+
+                {"projects" in exp && exp.projects.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={VP}
+                    transition={{ duration: 0.6, ease: EASE, delay: 0.3 }}
+                    className="mt-8"
+                  >
+                    <p className="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-4">
+                      Projects
+                    </p>
+                    <div className="border-t border-black dark:border-neutral-700">
+                      {exp.projects.map((project, pIdx) => (
+                        <motion.div
+                          key={project.id}
+                          initial={{ opacity: 0, y: 32 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: false, margin: "-150px 0px -60px 0px" }}
+                          transition={{ duration: 0.6, ease: EASE, delay: pIdx * 0.08 }}
+                        >
+                          <FeaturedRow
+                            project={project}
+                            index={pIdx}
+                            expanded={expandedIds[`${exp.company}-${exp.role}`] === project.id}
+                            onToggle={() => handleToggle(`${exp.company}-${exp.role}`, project.id)}
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
               </motion.div>
             ))}
           </div>
