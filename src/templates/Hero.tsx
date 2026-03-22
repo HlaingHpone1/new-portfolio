@@ -3,7 +3,11 @@
 import Image from "next/image";
 import { MapPin, ArrowDownRight } from "lucide-react";
 import { motion } from "motion/react";
-import { EASE, mountFadeUp as fadeUp, mountFadeIn as fadeIn } from "@/lib/motion";
+import {
+  EASE,
+  mountFadeUp as fadeUp,
+  mountFadeIn as fadeIn,
+} from "@/lib/motion";
 
 export default function Hero() {
   return (
@@ -98,7 +102,7 @@ export default function Hero() {
 
             <div className="relative w-56 h-64 md:w-72 md:h-88 lg:w-80 lg:h-[26rem] overflow-hidden rounded-sm border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900">
               <Image
-                src="/mine.jpg"
+                src="/mine3.png"
                 alt="Hlaing Hpone — Frontend Developer"
                 fill
                 sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 320px"
